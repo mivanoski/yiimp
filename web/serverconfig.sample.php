@@ -23,6 +23,8 @@ define('YAAMP_FEES_EXCHANGE', 2);
 define('YAAMP_FEES_RENTING', 2);
 define('YAAMP_TXFEE_RENTING_WD', 0.002);
 define('YAAMP_PAYMENTS_FREQ', 3*60*60);
+define('YAAMP_CLEAR_FREQ', 1*20*60);
+
 define('YAAMP_PAYMENTS_MINI', 0.001);
 
 define('YAAMP_ALLOW_EXCHANGE', false);
