@@ -247,38 +247,28 @@ void coinbase_create(YAAMP_COIND *coind, YAAMP_JOB_TEMPLATE *templ, json_value *
 		return;
 	}
     else if(strcmp(coind->symbol, "AVN") == 0 || strcmp(coind->symbol, "AVNX") == 0) {
-        char payees[4];
-        int npayees = 1;
-        char script_dests[4096] = { 0 };
+        bool founder_enabled = json_get_bool(json_result, "founder_payments_started");
+        json_value* founder = json_get_object(json_result, "founder");
 
-        json_value* founder = json_get_array(json_result, "founder");
-        bool founder_payments_started = json_get_bool(json_result, "founder_payments_started");
-        if (founder_payments_started && founder) {
-            const char *founder_payee = json_get_string(founder, "payee");
-            json_int_t founder_amount = json_get_int(founder, "amount");
-            if (founder_payee && founder_amount) {
-                char founder_script_payee[128] = { 0 };
-                npayees++;
-                base58_decode(founder_payee, founder_script_payee);
-                job_pack_tx(coind, script_dests, founder_amount, founder_script_payee);
-            }
-                //debuglog("FOUNDER DETECTED Payee: %s\n", founder_payee);
+        char founder_payee[256] = { 0 };
+        char founder_script[1024] = { 0 };
+        const char *payee = json_get_string(founder, "payee");
+        json_int_t amount = json_get_int(founder, "amount");
+        if(payee && amount) {
+            if (payee) snprintf(founder_payee, 255, "%s", payee);
+            if (strlen(founder_payee) == 0)
+            stratumlog("ERROR %s has no charity_address set!\n", coind->name);
+            base58_decode(founder_payee, founder_script);
+            strcat(templ->coinb2, "02");
+            job_pack_tx(coind, templ->coinb2, available, NULL);
+            p2sh_pack_tx(coind, templ->coinb2, amount, founder_script);
+            strcat(templ->coinb2, "00000000"); // locktime
+            coind->reward = (double)available/100000000*coind->reward_mul;
+            //debuglog("%s founder address %s, amount %lld\n", coind->symbol,founder_payee, amount);
+            //debuglog("%s founder script %s\n", coind->symbol,founder_script);
+            //debuglog("%s scripts %s\n", coind->symbol, templ->coinb2);
+            return;
         }
-
-        sprintf(payees, "%02x", npayees);
-        strcat(templ->coinb2, payees);
-        strcat(templ->coinb2, script_dests);
-        job_pack_tx(coind, templ->coinb2, available, NULL);
-        strcat(templ->coinb2, "00000000"); // locktime
-        if(coinbase_payload && strlen(coinbase_payload) > 0) {
-            char coinbase_payload_size[18];
-            ser_compactsize((unsigned int)(strlen(coinbase_payload) >> 1), coinbase_payload_size);
-            strcat(templ->coinb2, coinbase_payload_size);
-            strcat(templ->coinb2, coinbase_payload);
-        }
-
-        coind->reward = (double)available / 100000000 * coind->reward_mul;
-        return;
     }
 	else if(strcmp(coind->symbol, "VGC") == 0)
 	{
