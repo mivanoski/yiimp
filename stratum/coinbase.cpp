@@ -246,7 +246,40 @@ void coinbase_create(YAAMP_COIND *coind, YAAMP_JOB_TEMPLATE *templ, json_value *
 		//debuglog("%s %d dests %s\n", coind->symbol, npayees, script_dests);
 		return;
 	}
+    else if(strcmp(coind->symbol, "AVN") == 0 || strcmp(coind->symbol, "AVNX") == 0) {
+        char payees[4];
+        int npayees = 1;
+        char script_dests[4096] = { 0 };
 
+        json_value* founder = json_get_array(json_result, "founder");
+        bool founder_payments_started = json_get_bool(json_result, "founder_payments_started");
+        if (founder_payments_started && founder) {
+            const char *founder_payee = json_get_string(founder, "payee");
+            json_int_t founder_amount = json_get_int(founder, "amount");
+            if (founder_payee && founder_amount) {
+                char founder_script_payee[128] = { 0 };
+                npayees++;
+                base58_decode(founder_payee, founder_script_payee);
+                job_pack_tx(coind, script_dests, founder_amount, founder_script_payee);
+            }
+                //debuglog("FOUNDER DETECTED Payee: %s\n", founder_payee);
+        }
+
+        sprintf(payees, "%02x", npayees);
+        strcat(templ->coinb2, payees);
+        strcat(templ->coinb2, script_dests);
+        job_pack_tx(coind, templ->coinb2, available, NULL);
+        strcat(templ->coinb2, "00000000"); // locktime
+        if(coinbase_payload && strlen(coinbase_payload) > 0) {
+            char coinbase_payload_size[18];
+            ser_compactsize((unsigned int)(strlen(coinbase_payload) >> 1), coinbase_payload_size);
+            strcat(templ->coinb2, coinbase_payload_size);
+            strcat(templ->coinb2, coinbase_payload);
+        }
+
+        coind->reward = (double)available / 100000000 * coind->reward_mul;
+        return;
+    }
 	else if(strcmp(coind->symbol, "VGC") == 0)
 	{
 		char script_dests[2048] = { 0 };
