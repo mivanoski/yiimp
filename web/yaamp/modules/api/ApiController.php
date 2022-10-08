@@ -225,8 +225,8 @@ class ApiController extends CommonController
                     'reward' => $coin->reward,
                     'height' => (int) $coin->block_height,
                     'difficulty' => $coin->difficulty,
-		    "fees" => (double) $fees,
-		    "fees_solo" => (double) $fees_solo,
+                    "fees" => (float) $fees,
+                    "fees_solo" => (float) $fees_solo,
                     'workers' => $workers,
                     'workers_shared' => $workers_shared,
                     'workers_solo' => $workers_solo,
@@ -245,7 +245,8 @@ class ApiController extends CommonController
                     'lastblock_solo' => $lastblock_solo,
                     'timesincelast' => $timesincelast,
 					'timesincelast_shares' => $timesincelast_shares,
-					'timesincelast_solo' => $timesincelast_solo
+                    'timesincelast_solo' => $timesincelast_solo,
+                    'minimumPayment' => (float) $coin->payout_min
                 );
 
                 if (!empty($coin->symbol2))
