@@ -314,18 +314,18 @@ static void client_do_submit(YAAMP_CLIENT *client, YAAMP_JOB *job, YAAMP_JOB_VAL
 			}
 
 			if (g_debuglog_hash) {
-				debuglog("--------------------------------------------------------------\n");
-				debuglog("hash1 %s\n", hash1);
-				debuglog("hash2 %s\n", submitvalues->hash_be);
+				//debuglog("--------------------------------------------------------------\n");
+				//debuglog("hash1 %s\n", hash1);
+				//debuglog("hash2 %s\n", submitvalues->hash_be);
 			}
 		}
 
 		else {
-			debuglog("*** REJECTED :( %s block %d %d txs\n", coind->name, templ->height, templ->txcount);
-			rejectlog("REJECTED %s block %d\n", coind->symbol, templ->height);
+			//debuglog("*** REJECTED :( %s block %d %d txs\n", coind->name, templ->height, templ->txcount);
+			//rejectlog("REJECTED %s block %d\n", coind->symbol, templ->height);
 			if (g_debuglog_hash) {
 				//debuglog("block %s\n", block_hex);
-				debuglog("--------------------------------------------------------------\n");
+				//debuglog("--------------------------------------------------------------\n");
 			}
 		}
 	}
