@@ -31,13 +31,13 @@ showTableSorter('maintable', "{
 echo <<<end
 <style type="text/css">
 span.block { padding: 2px; display: inline-block; text-align: center; min-width: 15px; border-radius: 3px; }
-span.block.new       { color: white; background-color: #ad4ef0; }
+span.block.new       { color: white; background-color: #30024f; }
 span.block.orphan    { color: white; background-color: #d9534f; }
-span.block.immature  { color: white; background-color: #f0ad4e; }
-span.block.confirmed { color: white; background-color: #5cb85c; }
+span.block.immature  { color: white; background-color: #016126; }
+span.block.confirmed { color: white; background-color: #002e0f; }
 span.block2          { padding: 2px; display: inline-block; text-align: center; min-width: 35px; border-radius: 3px; margin-right: 5px; }
-span.block2.solo     { color: white;  background-color: #4ca6b3 !important; }
-span.block2.shared   { color: white;  background-color: #4ca6b3 !important; }
+span.block2.solo     { color: white;  background-color: #210461 !important; }
+span.block2.shared   { color: white;  background-color: #01380b !important; }
 </style>
 
 <thead>

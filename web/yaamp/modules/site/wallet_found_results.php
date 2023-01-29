@@ -23,14 +23,16 @@ $db_blocks = getdbolist('db_blocks', "userid=$user->id order by time desc limit 
 echo <<<EOT
 <style type="text/css">
 span.block { padding: 2px; display: inline-block; text-align: center; min-width: 75px; border-radius: 3px; }
-span.block.invalid  { color: white; background-color: #d9534f; }
-span.block.immature { color: white; background-color: #f0ad4e; }
-span.block.exchange { color: white; background-color: #5cb85c; }
-span.block.confirmed { color: white; background-color: #5cb85c; }
-span.block.cleared  { color: white; background-color: gray; }
+span.block.invalid  { color: white; background-color: #e6020a; }
+span.block.immature { color: white; background-color: #016126; }
+span.block.exchange { color: white; background-color: #070082; }
+span.block.confirmed { color: white; background-color: #002e0f; }
+span.block.cleared  { color: white; background-color: #00170c; }
+span.block.orphan    { color: white; background-color: #7a0400; }
+span.block.new       { color: white; background-color: #30024f; }
 span.block2 { padding: 2px; display: inline-block; text-align: center; min-width: 35px; border-radius: 3px; margin-right: 5px; }
-span.block2.solo { color: white;  background-color: #4ca6b3 !important; }
-span.block2.shared { color: white;  background-color: #4ca6b3 !important; }
+span.block2.solo { color: white;  background-color: #210461 !important; }
+span.block2.shared { color: white;  background-color: #01380b !important; }
 </style>
 <table class="dataGrid2">
 <thead>

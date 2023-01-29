@@ -51,10 +51,10 @@ echo <<<EOT
 
 <style type="text/css">
 span.block { padding: 2px; display: inline-block; text-align: center; min-width: 75px; border-radius: 3px; }
-span.block.new       { color: white; background-color: #ad4ef0; }
-span.block.orphan    { color: white; background-color: #d9534f; }
-span.block.immature  { color: white; background-color: #f0ad4e; }
-span.block.confirmed { color: white; background-color: #5cb85c; }
+span.block.new       { color: white; background-color: #30024f; }
+span.block.orphan    { color: white; background-color: #7a0400; }
+span.block.immature  { color: white; background-color: #016126; }
+span.block.confirmed { color: white; background-color: #002e0f; }
 span.solo	     { padding: 2px; display: inline-block; text-align: center; min-width: 15px; border-radius: 3px; color: white; background-color: #4ca6b3; }
 span.shared	     { padding: 2px; display: inline-block; text-align: center; min-width: 15px; border-radius: 3px; color: white; background-color: #4ca6b3; }
 
