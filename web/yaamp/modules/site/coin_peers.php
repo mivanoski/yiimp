@@ -59,7 +59,7 @@ echo <<<end
 <th>Services</th>
 <th>Since</th>
 <th>Last</th>
-<th>Rx / Tx (kB)</th>
+<th>Rx / Tx (mB)</th>
 <th width="30"></th>
 </tr>
 </thead><tbody>
@@ -100,8 +100,8 @@ if (!empty($list)) foreach ($list as $peer)
     $lastsend = arraySafeVal($peer, 'lastsend', time());
     echo '<td>' . datetoa2(max($lastrecv, $lastsend)) . '</td>';
 
-    $bytesrecv = round(arraySafeVal($peer, 'bytesrecv') / 1024., 1);
-    $bytessent = round(arraySafeVal($peer, 'bytessent') / 1024., 1);
+    $bytesrecv = round(arraySafeVal($peer, 'bytesrecv') / 1024 / 1024., 2);
+    $bytessent = round(arraySafeVal($peer, 'bytessent') / 1024 / 1024., 2);
     if ($bytesrecv + $bytessent) echo '<td>' . "$bytesrecv / $bytessent" . '</td>';
     else echo '<td></td>';
 
