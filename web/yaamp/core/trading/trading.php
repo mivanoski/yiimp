@@ -3,14 +3,14 @@ require_once('poloniex_trading.php');
 require_once('binance_trading.php');
 require_once('bittrex_trading.php');
 require_once('bleutrade_trading.php');
-require_once('c-cex_trading.php');
+//require_once('c-cex_trading.php');
 require_once('kraken_trading.php');
-require_once('yobit_trading.php');
+//require_once('yobit_trading.php');
 require_once('alcurex_trading.php');
 require_once('coinsmarkets_trading.php');
 require_once('crex24_trading.php');
 require_once('cryptobridge_trading.php');
-require_once('cryptopia_trading.php');
+//require_once('cryptopia_trading.php');
 require_once('hitbtc_trading.php');
 require_once('kucoin_trading.php');
 require_once('livecoin_trading.php');
@@ -22,15 +22,15 @@ function cancelExchangeOrder($order=false)
 	if ($order)
 		switch ($order->market)
 		{
-			case 'yobit':
-				doYobitCancelOrder($order->uuid);
-				break;
+//			case 'yobit':
+//				doYobitCancelOrder($order->uuid);
+//				break;
 			case 'binance':
 				doBinanceCancelOrder($order->uuid);
 				break;
-			case 'c-cex':
-				doCCexCancelOrder($order->uuid);
-				break;
+//			case 'c-cex':
+//				doCCexCancelOrder($order->uuid);
+//				break;
 			case 'bittrex':
 				doBittrexCancelOrder($order->uuid);
 				break;
@@ -40,9 +40,9 @@ function cancelExchangeOrder($order=false)
 			case 'crex24':
 				doCrex24CancelOrder($order->uuid);
 				break;
-			case 'cryptopia':
-				doCryptopiaCancelOrder($order->uuid);
-				break;
+//			case 'cryptopia':
+//				doCryptopiaCancelOrder($order->uuid);
+//				break;
 			case 'hitbtc':
 				doHitBTCCancelOrder($order->uuid);
 				break;
@@ -77,10 +77,10 @@ function runExchange($exchangeName=false)
 				updateCrex24Markets();
 				break;
 
-			case 'cryptopia':
-				doCryptopiaTrading(true);
-				updateCryptopiaMarkets();
-				break;
+//			case 'cryptopia':
+//				doCryptopiaTrading(true);
+//				updateCryptopiaMarkets();
+//				break;
 
 			case 'cryptobridge':
 				doCryptobridgeTrading(true);
@@ -103,10 +103,10 @@ function runExchange($exchangeName=false)
 				getCexIoBalances();
 				break;
 
-			case 'c-cex':
-				doCCexTrading(true);
-				updateCCexMarkets();
-				break;
+//			case 'c-cex':
+//				doCCexTrading(true);
+//				updateCCexMarkets();
+//				break;
 
 			case 'coinexchange':
 				updateCoinExchangeMarkets();
@@ -122,10 +122,10 @@ function runExchange($exchangeName=false)
 				//updateEmpoexMarkets();
 				break;
 
-			case 'yobit':
-				doYobitTrading(true);
-				updateYobitMarkets();
-				break;
+//			case 'yobit':
+//				doYobitTrading(true);
+//				updateYobitMarkets();
+//				break;
 
 			case 'bleutrade':
 				doBleutradeTrading(true);
